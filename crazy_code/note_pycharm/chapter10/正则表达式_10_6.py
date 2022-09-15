@@ -10,7 +10,7 @@ print("=========compile========")
 p = re.compile('abc')
 print(p.search("www.abc.com"))
 # 直接使用re模块函数
-print(re.search('abc', 'www.abc.com'))
+print(re.search('abc', 'www.abc.com`'))
 # macth
 print("=========match========")
 m1 = re.match('www', 'www.fkit.com')
@@ -91,6 +91,7 @@ m2 = re.search(r'(?P<prefix>fkit).(?P<suffix>org)', r"www.fkit.org is a good dom
 print(m2.groupdict())
 # lastindex
 print('=============lastindex=======================')
+# 组的序号是由外向内，由左向右排序。但匹配顺序是递归，最外层是最后匹配。
 m4 = re.search(r'(a)b', r"ab", 1)
 print(m4.lastindex, m4.group(1))
 m4 = re.search(r'((a)(b))', r"ab")
@@ -99,6 +100,7 @@ m4 = re.search(r'((ab))', r"ab")
 print(m4.lastindex, m4.group(1), m4.group(2))
 m4 = re.search(r'(a)(b)', r"ab")
 print(m4.lastindex, m4.group(1), m4.group(2))
+print('=============其他属性测试=======================')
 # match.pos等属性测试
 m = re.search(r'fkit', r"www.fkit.org is a good domain fkit")
 p = re.compile(r'(fkit)')
@@ -107,6 +109,8 @@ print(m.span(), m.pos, m.endpos)
 print(m2.span(), m2.pos, m2.endpos)
 print(m2.lastindex)
 print(m2.re)
+print(m2.string)
+
 """
 10.6.2 正则表达式旗标
 """
@@ -116,12 +120,36 @@ m5 = re.findall(r'fkit', 'FKit is a good domain,FKIT is good', re.I)
 print(m5)
 # 正则表达式可以换行和注释
 a = re.compile(r"""020  #广州的区号
-                    \-  #中间的短横线
+                    -  #中间的短横线
                     \d{8} #8个数值""", re.X)
-b = re.compile(r'020\-\d{8}')
+b = re.compile(r'020-\d{8}')
+print(b.search('020-12345678'))
 
 """
     10.6.3创建正则表达式
 """
 print('--------------------10.6.3 创建正则表达式-------------------------')
-print('test')
+print(re.fullmatch(r'\u0041\\', 'A\\'))
+print(re.fullmatch(r'\u0061\t', 'a\t'))
+print(re.fullmatch(r'\?\[', '?['))
+
+print(re.fullmatch(r'c\wt', 'cat'))
+print(re.fullmatch(r'c\wt', 'c9t'))
+print(re.fullmatch(r'\d\d\d-\d\d\d-\d\d\d\d', '123-456-8888'))
+
+print('---------------10.6.4 子表达式-----------------------------')
+print(re.search(r'Windows (95|98|NT|2000)[\w|\s]+\1', 'Windows 98 published in 98'))
+print(re.search(r'<(?P<tag>\w+)>\w+</(?P=tag)>', '<h3>xx</h3>'))
+print(re.search(r'Windows (?:95|98|NT|2000) [a-z]+', 'Windows 98 published in 98'))
+print(re.search(r'(?<=<h1>).+?(?=</h1>)', 'help!<h1>fkit.org</h1>!technology'))
+print(re.search(r'(?<=<h1>).+?(?=</h1>)', 'help!<h1><div>fkit</div></h1>!technology'))
+print(re.search(r'[a-zA-Z0-9]{3,}(?#username)@fkit\.org', 'sun@fkit.org'))
+print(re.search(r'(?i)[a-zA-Z0-9]{3,}(?#username)@fkit\.org', 'sun@FKIT.org'))
+print(re.search(r'(?i:[a-zA-Z0-9]){3,}(?#username)@fkit\.org', 'sUn@fkit.org'))
+print(re.search(r'(?-i:[a-z0-9]){3,}(?#username)@fkit\.org', 'sun@FKIT.org', re.I))
+
+print('---------------10.6.5 贪婪模式与勉强模式-----------------------------')
+# 贪婪模式
+print(re.search(r'@.+\.', 'sun@fkit.com.cn'))
+# 勉强模式
+print(re.search(r'@.+?\.', 'sun@fkit.com.cn'))
