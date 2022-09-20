@@ -62,7 +62,7 @@ print(
 s = set()
 frozen_s = frozenset('Kotlin')
 s.add(frozen_s)
-print('s集合的元素', s)
+print('s集合的元素----', s)
 sub_s = {'python'}
 # s.add(sub_s)
 print(s)
@@ -75,26 +75,50 @@ from collections import deque
 print(
     [e for e in dir(deque) if not e.startswith('_')]
 )
-#双端队列当栈
-stack = deque(('Kotlin','Python'))
+# 双端队列当栈
+stack = deque(('Kotlin', 'Python'))
 stack.append('Erlang')
 stack.append('Swift')
-print('stack中的元素',stack)
+print('stack中的元素', stack)
 print(stack.pop())
 print(stack.pop())
 print(stack)
-#队列
-q = deque(('Kotlin','Python'))
+# 队列
+q = deque(('Kotlin', 'Python'))
 q.append('Erlang')
 q.append('Swift')
-print('q中的元素',q)
+print('q中的元素', q)
 print(q.popleft())
 print(q.popleft())
 print(q)
-
+print("---------rotate------------------------")
 p = deque(range(5))
-print('p中的元素为',p)
+print('p中的元素为', p)
 p.rotate()
-print('p中元素',p)
+print('p中元素', p)
 p.rotate()
-print('p中元素',p)
+print('p中元素', p)
+
+"""
+10.7.3 python的堆操作
+"""
+print("---------堆操作------------------------")
+import heapq
+
+print(heapq.__all__)
+from heapq import *
+
+my_data = list(range(10))
+my_data.append(0.5)
+print("my_data的数据为：", my_data)
+heapify(my_data)
+print("应用堆之后my_data的元素：", my_data)
+heappush(my_data, 7.2)
+print("添加7.2之后my_data的元素：", my_data)
+print(heappop(my_data))
+print(heappop(my_data))
+print("弹出两个最小元素之后my_data的元素：", my_data)
+print(heapreplace(my_data, 8.1))
+print("replace之后my_data的元素：", my_data)
+print("my_data最大的3个元素是：", nlargest(3, my_data))
+print("my_data最小的4个元素是：", nsmallest(4, my_data))
