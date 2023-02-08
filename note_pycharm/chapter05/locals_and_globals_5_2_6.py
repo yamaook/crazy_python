@@ -9,7 +9,7 @@
             vars(object):获取指定对象范围内所有变量组成的"变量字典"。如不传参，和locals()作用相同
 
         globals 和 locals 区别：
-            1、如果在全局范围内调用locals()，和globals()效果一样。
+            1、如果在全局范围内调用locals()，和globals()效果一样,而global总是获取全局范围内的变量字典。
             2、globals和locals获取的全局范围内的变量字典，可以修改并且会改变全局变量本身。
                但修改locals获取的局部范围内的变量字典不影响局部变量。
 """

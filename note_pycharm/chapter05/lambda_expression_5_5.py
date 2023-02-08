@@ -1,15 +1,19 @@
 """
 5.5 局部函数与lambda表达式
-    功能更灵活的代码块
+    函数：命名，方便复用的代码块
+    lambda表达式：功能更灵活的代码块
 
-    5.5.1 回顾局部函数
+    5.5.1 回顾局部函数：
+        局部函数的函数名作用太有限，lambda表达式简化局部函数的写法。
     5.5.2 使用lambda表达式代替局部函数
+        lambda表达式只能是单行表达式
         本质：匿名的、单行函数体的函数,就是一个简化的函数。
+
+        map工具函数
 """
 
 
 def get_math_func(tp):
-    result = 1
     if tp == "square":
         return lambda n: n * n
     elif tp == "cube":
