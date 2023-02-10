@@ -1,7 +1,29 @@
 """
     7.2 异常处理机制
+        需要结合代码看。
 """
-# 7.2.1 使用try except捕获异常
+
+"""
+    7.2.1 使用try except捕获异常
+        1、完整异常处理语法结构。
+            try
+                ...业务实现
+            except (error1,error2,...) as e:
+                ...异常处理块
+            ...
+            else:
+                正常处理块
+                ...
+            finally:
+                资源回收块
+                ...
+        2、异常处理过程：
+            try块引发异常：
+                1、except块捕获异常
+                2、没有对应except块，运行时环境终止
+            
+"""
+
 BOARD_SIZE = 15
 board = []
 
@@ -38,7 +60,15 @@ def printBoard():
 #         continue
 """
     7.2.2 异常类的继承体系
-    从这里又是一次过哈
+        1、except块专门处理该异常类及其子类的异常实例。
+        2、可以有多个except块。
+        3、try块执行一次，最多执行一个except块。
+        4、所有异常类都是从BaseException派生，但自定义异常需要继承Exception类。
+        5、sys argv列表：  
+            sys.argv[0] 程序名
+            sys.argv[1] 提供的第一个参数
+            ...
+        5、父类异常的except块放在子类异常的except块后面。
 """
 import sys
 
@@ -58,6 +88,8 @@ except Exception:
     print("未知错误")
 """
     7.2.3 多异常捕获
+        1、except块捕获多种异常的语法格式。
+        2、省略异常类的except语法代表可捕获所有类型异常。
 """
 try:
     a = int(sys.argv[1])
@@ -71,8 +103,11 @@ except:
     print("未知异常")
 
 """
- 7.2.4 访问异常信息
-    忘记过去，从头开始。
+     7.2.4 访问异常信息
+        1、解释器会将异常对象赋值给异常变量。
+        2、异常对象的属性和方法：
+            args,errno,strerr
+            with_traceback()
 """
 
 # def foo():
@@ -87,7 +122,15 @@ except:
 # foo()
 """
     7.2.5 else 块
-    try没有出现异常,会执行else块
+        1、try没有出现异常,会执行else块
+        
+        2、为什么不直接把else块中代码放在try块的最后？
+            当try没有异常，else块有异常，就能体现出else块的作用了。
+            
+        3、else块中代码异常不会被except捕获。
+            一段代码放在try块后面：可以让异常被except块捕获。
+            一段代码放在else块后面：可以让异常向外传播。
+            
 """
 # s = input("请输入除数-----")
 # try:
@@ -129,6 +172,11 @@ except:
 
 """
     7.2.6 使用finally回收资源
+        1、作用：保证回收try块中打开的物力资源,即使有return，finally也会执行。
+            但使用os.__exit(1)语句退出解释器则finally不会执行。
+        2、try块必须有，except 和 finally块至少出现一个。
+        3、finally块中不要使用方法终止的语句，将会使try\except块中的终止语句失效。
+        
 """
 import os
 
@@ -165,4 +213,5 @@ print(a)
 
 """
     7.2.7 异常处理嵌套
+        在try、except、finally块中包含完整异常处理流程的情形被称为异常处理嵌套。
 """

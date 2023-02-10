@@ -1,5 +1,15 @@
 """
     7.4 Python的异常传播轨迹
+        traceback模块：处理异常传播轨迹。
+            traceback.print_exc():将异常传播轨迹信息输出到控制台或者文件中
+                完整形式：
+                    print_exception(etype,value,tb[,limit[,file]])
+                sys对象可以获得except所捕获的异常信息，并作为上面的参数，
+                    所以使用print_exc会自动处理当前块捕获的异常。
+
+            format_exc():将异常传播轨迹信息转换成字符串
+
+
 """
 import sys
 import traceback
@@ -26,7 +36,7 @@ def thirdMethod():
 
 try:
     main()
-except:
+except Exception as e:
     print("自己输出的")
     traceback.print_exc(limit=2)
     traceback.print_exc(file=open('log.txt', 'a'))
