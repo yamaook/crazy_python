@@ -1,5 +1,8 @@
 '''
     9.4.1 模块包含什么
+        如何查看模块中包含的可以使用的程序单元
+            列表推倒式
+            __all__变量
 '''
 import string
 
@@ -8,6 +11,7 @@ a = [e for e in dir(string) if not e.startswith('_')]
 print(a)
 print(string.__all__)
 
+print("------------------------")
 """
     9.4.2 使用__doc__属性查看文档
 """
