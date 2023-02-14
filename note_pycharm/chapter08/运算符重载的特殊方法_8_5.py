@@ -1,5 +1,15 @@
 """
+    8.5 运算符重载的特殊方法
+        让自定义类对象也支持各种运算符的运算。
+"""
+
+"""
     8.5.1 与数值运算符相关的特殊方法
+        1、与数值运算相关的运算符：算术运算符、位运算符。
+        2、运算符都有对应的方法提供支持，为自定义类提供这些方法，程序就可以用运算符来操作该类的实例。
+        3、程序首先使用x.__add__(),然后使用y.__radd__()。
+        4、__iadd__支持各种扩展后的赋值运算符。
+        
 """
 
 
@@ -8,13 +18,13 @@ class Rectangle:
         self.width = width
         self.height = height
 
-    def setSize(self, size):
+    def setsize(self, size):
         self.width, self.height = size
 
-    def getSize(self):
+    def getsize(self):
         return self.width, self.height
 
-    size = property(getSize, setSize)
+    size = property(getsize, setsize)
 
     # 运算符左侧调用
     def __add__(self, other):
@@ -82,6 +92,7 @@ print(r1)
 
 """
     8.5.2 与比较运算符相关的特殊方法
+        同一类实例比较大小，实现其中三个方法即可。
 """
 
 print(r1 > r2)
@@ -100,6 +111,7 @@ print(r2 == r3)
 print(r2 != r3)
 """
     8.5.3 与单目运算符相关的特殊方法
+        
 """
 print("------------853-------------------------")
 r = Rectangle(4, 5)
@@ -108,8 +120,9 @@ print(r)
 
 """
     8.5.4 与类型转换相关的特殊方法
+        
 """
-print("------8。5。4-------------")
+print("------8.5.4-------------")
 r = Rectangle(4, 5)
 print(int(r))
 

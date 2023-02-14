@@ -1,8 +1,16 @@
 """
-    动态判断是否包含某个属性、或者动态设置某个属性值，可以用python的反射支持
-"""
-"""
-    8.2.1 动态操作属性
+    8.2 与反射相关的属性和方法
+        反射的作用：
+            程序运行中动态判断是否包含某个属性或者方法。
+            动态设置某个属性值。
+
+        8.2.1 动态操作属性
+            动态检查对象是否包含某些属性和方法相关的函数：
+                hasattr:方法属性都可以判断
+                getattr：方法属性都可以获得，获得方法是返回绑定的方法本身。
+                setattr：设置的属性不存在，就是添加属性。
+                            设置方法时，新设置的方法是未绑定方法。也可以将方法变成属性。
+
 """
 
 
@@ -23,7 +31,7 @@ print(hasattr(c, 'info'))
 # 获取指定属性值
 print(getattr(c, "detail"))
 print(getattr(c, "view_times"))
-print(getattr(c, "info"))
+print(getattr(c, "info", '默认值'))
 # 为指定属性设置属性值
 setattr(c, 'detail', '天气不错')
 setattr(c, 'view_times', 32)
@@ -42,12 +50,16 @@ def bar():
 setattr(c, 'info', bar)
 c.info()
 print(getattr(c, 'info'))
-# 帮方法设置成属性
+# 将方法设置成属性
 setattr(c, 'info', 'fkit')
 print(c.info)
 
+print('----------------')
 """
-    8.2.2 __call__属性
+    8.2.2 __call__属性，其实是方法不是属性。
+        判断属性或者方法是否包含__call__属性，确定是属性还是方法。
+        函数可调用的本质在于__call__()方法，实际是x.__call__(参数，...)。
+        因此可以为自定义类添加__call__方法,让其实例可调用。
 """
 
 
