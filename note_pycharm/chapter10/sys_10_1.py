@@ -1,6 +1,7 @@
 """
-    sys模块
-        代表了python解释器，获取和python解释器相关的信息
+    10 常见模块
+        10.1 sys模块
+            代表了python解释器，获取和python解释器相关的信息
 """
 import sys
 import pprint
@@ -28,6 +29,8 @@ print(sys.flags)
 print(sys.getrefcount(a))
 print(sys.modules)
 print(sys.stdin)
+print('----------10.1----------------')
+
 """
     10.1.1 获取运行参数
 """
@@ -41,7 +44,8 @@ for arg in argv:
     
 """
 print(sys.path)
-sys.path.append('/Users/heyanan/crazy_code/note_pycharm/chapter09')
+sys.path.append('/Users/heyanan/mygit/crazy_python/note_pycharm/chapter09')
+print(sys.executable)
 import all_module
 
 all_module.hello()

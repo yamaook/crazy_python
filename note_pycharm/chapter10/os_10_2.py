@@ -16,9 +16,9 @@ print(os.pathsep)
 print(os.linesep)
 print(os.urandom(3))
 
-# 与进程有关的函数
+# 与进程管理相关的函数
 print("-----------------------")
 os.system('ls')
 # os.startfile('hh.txt')#windows系统才能用
 os.spawnl(os.P_NOWAIT, '/Applications/QQ.app/Contents/MacOS/QQ', ' ')
-os.execl('/usr/local/bin/python3.9', ' ', 'test.py', 'i')
+os.execl('/opt/anaconda3/bin/python3', ' ', 'test.py', 'i')
