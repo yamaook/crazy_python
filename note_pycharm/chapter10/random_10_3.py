@@ -21,6 +21,6 @@ print("====================")
 import collections
 
 print(random.choices(['python', 'swift', 'kotlin'], [5, 5, 1], k=6))
-deck = collections.Counter(tens=6, low_cards=36)
+deck = collections.Counter(tens=16, low_cards=36)
 seen = random.sample(list(deck.elements()), k=20)
 print(seen.count('tens') / 20)
