@@ -1,9 +1,10 @@
 """
 10.7 容器相关类
-"""
-"""
+
     10.7.1 set 和 frozenset
+
 """
+print("--------------------set----------------------------")
 print(
     [e for e in dir(set) if not e.startswith('_')]
 )
@@ -54,6 +55,8 @@ un = e.union(f)
 print('e和f执行并集的结果', un)
 e.update(f)
 print('e集合的元素：', e)
+
+print("-------------------frozenset-----------------------------")
 # frozenset
 print(
     [e for e in dir(frozenset) if not e.startswith('_')]
@@ -71,6 +74,8 @@ print(s)
 10.7.2 双端队列deque
 """
 from collections import deque
+
+print("-------------------双端队列deque-----------------------------")
 
 print(
     [e for e in dir(deque) if not e.startswith('_')]
@@ -91,13 +96,17 @@ print('q中的元素', q)
 print(q.popleft())
 print(q.popleft())
 print(q)
-print("---------rotate------------------------")
+print("---rotate----首尾相连")
 p = deque(range(5))
 print('p中的元素为', p)
 p.rotate()
 print('p中元素', p)
 p.rotate()
 print('p中元素', p)
+x = deque(range(1, 5))
+# deque 并非只能在双端进行插入操作，也可以在指定位置进行插入。
+x.insert(2, 0)
+print(x)
 
 """
 10.7.3 python的堆操作

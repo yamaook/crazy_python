@@ -1,5 +1,6 @@
 """
-10.8.2 Counter对像
+    10.8.2 Counter对像
+        统计容器中各元素出现的次数，本质是一个特殊字典。
 """
 
 from collections import Counter
@@ -42,7 +43,7 @@ print(set(c))
 print(dict(c))
 list_of_pairs = c.items()
 print(list_of_pairs)
-c2 = Counter(list_of_pairs)
+c2 = Counter(dict(list_of_pairs))
 print(c2)
 print(c.most_common()[:-4:-1])
 c.clear()
@@ -51,4 +52,14 @@ c = Counter(a=3, b=1, c=-1)
 d = Counter(a=1, b=-2, d=3)
 print(c + d)
 print(c - d)
-Counter({'a': 2})
+e = Counter({'a': 2})
+print('----', e)
+
+# 交
+print(c & d)
+# 并
+print(c | d)
+# 求正
+print(+c)
+# 求负
+print(-d)

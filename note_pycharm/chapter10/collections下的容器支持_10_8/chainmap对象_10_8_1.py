@@ -1,5 +1,7 @@
 """
-10.8.1 chainmap对象
+10.8 collections下的容器支持
+    10.8.1 chainmap对象
+        链接多个dict
 """
 
 from collections import ChainMap

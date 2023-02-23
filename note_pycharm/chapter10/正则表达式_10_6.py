@@ -4,14 +4,16 @@
 import re
 
 print(re.__all__)
-# compile
+
+# 1、compile
 print("=========compile========")
 # 使用正则表达式对象
 p = re.compile('abc')
 print(p.search("www.abc.com"))
 # 直接使用re模块函数
 print(re.search('abc', 'www.abc.com`'))
-# macth
+
+# 2、macth和search
 print("=========match========")
 m1 = re.match('www', 'www.fkit.com')
 print(m1.span())
@@ -26,7 +28,8 @@ print(m2.group())
 m3 = re.search('fkit', 'www.fkit.com')
 print(m3.span())
 print(m3.group())
-# findall
+
+# 3、findall finditer
 print("=========findall对比finditer========")
 print(re.findall('fkit', 'FkIt is very good,Fkit.org is my favorite', re.I))
 # finditer
@@ -35,7 +38,7 @@ for i in it:
     # 迭代器的元素是匹配对象
     print(str(i.span()) + '-->' + i.group())
 
-# sub
+# 4、sub替换所有匹配内容
 print("=========sub========")
 my_date = '2008-08-18'
 print(re.sub(r'-', '/', my_date))
@@ -51,14 +54,14 @@ s = 'Python很好，Kotlin也很好'
 # 指定使用fun函数作为替换内容
 print(re.sub(r'(?P<lang>\w+)', fun, s, flags=re.A))
 
-# split返回分割后子串的列表
+# 5、split返回分割后子串的列表
 print("=========split========")
 print(re.split(',', 'fkit,fkjava,crazyit'))
 print(re.split(',', 'fkit,fkjava,crazyit', 1))
 print(re.split('a', 'fkit,fkjava,crazyit'))
 print(re.split('x', 'fkit,fkjava,crazyit'))
 
-# escape
+# 6、escape转义模式中特殊字符
 print("=========escape========")
 # 转义模式中的特殊字符。
 # 如果要匹配可能包含正则表达式元字符的任意文字字符串，则此选项非常有用。例如：
@@ -91,7 +94,8 @@ m2 = re.search(r'(?P<prefix>fkit).(?P<suffix>org)', r"www.fkit.org is a good dom
 print(m2.groupdict())
 # lastindex
 print('=============lastindex=======================')
-# 组的序号是由外向内，由左向右排序。但匹配顺序是递归，最外层是最后匹配。
+# 重点：组的序号是由外向内，由左向右排序。
+# 但匹配顺序是递归，最外层是最后匹配，同级从左到右匹配。
 m4 = re.search(r'(a)b', r"ab", 1)
 print(m4.lastindex, m4.group(1))
 m4 = re.search(r'((a)(b))', r"ab")
@@ -136,6 +140,10 @@ print(re.fullmatch(r'\?\[', '?['))
 print(re.fullmatch(r'c\wt', 'cat'))
 print(re.fullmatch(r'c\wt', 'c9t'))
 print(re.fullmatch(r'\d\d\d-\d\d\d-\d\d\d\d', '123-456-8888'))
+
+"""
+    10.6.4 子表达式
+"""
 
 print('---------------10.6.4 子表达式-----------------------------')
 print(re.search(r'Windows (95|98|NT|2000)[\w|\s]+\1', 'Windows 98 published in 98'))
